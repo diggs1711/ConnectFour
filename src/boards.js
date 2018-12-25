@@ -1,5 +1,11 @@
+/**
+ * @param {Number} height number of rows
+ * @param {NUmber} width number of columns
+ * @description indtance the connect four board
+ */
+
 export default class Board {
-    constructor(board = [], height = 6, width = 7) {
+    constructor(height = 6, width = 7) {
         this.board = board
         this.width = width
         this.height = height

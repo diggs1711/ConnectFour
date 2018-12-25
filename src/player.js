@@ -1,8 +1,13 @@
+/**
+ * @param {Number} max_depth 
+ * @return player
+ * @description instance of the player
+ */
+
 import Board from "./boards.js"
 
 export default class Player {
-    constructor(color, max_depth = -1) {
-        this.color = color
+    constructor(max_depth = -1) {
         this.max_depth = max_depth
         this.nodes_map = new Map()
     }
