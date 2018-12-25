@@ -1,0 +1,34 @@
+{
+  "name": "connectfour",
+  "version": "1.0.0",
+  "description": "connect four game using minimax",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "serve": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diggs1711/ConnectFour.git"
+  },
+  "author": "David Higgins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diggs1711/ConnectFour/issues"
+  },
+  "homepage": "https://github.com/diggs1711/ConnectFour#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^2.0.2",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.28.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.14"
+  }
+}
