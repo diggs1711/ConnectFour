@@ -18,16 +18,16 @@ export default class Player {
 
         if (board.isWinner() || depth === this.max_depth) {
             let winner = board.isWinner();
-            if (board.isWinner().winner === "red") return (100 - depth)
-            if (board.isWinner().winner === "yellow") return (-100 + depth)
+            if (winner.winner === "red") return (1000 - depth)
+            if (winner.winner === "yellow") return (-1000 + depth)
             return 0
         }
 
         if (maximising) {
-            let best = -100;
+            let best = -Infinity;
 
             board.getAvailableColumns().forEach(index => {
-                let copy = new Board(board.board.slice())
+                let copy = board.copyBoard()
                 copy.insertDisc("red", index + 1)
                 let node_value = this.getBestMove(copy, false, callback, depth + 1)
                 best = Math.max(best, node_value)
@@ -54,10 +54,10 @@ export default class Player {
             return best;
         }
         if (!maximising) {
-            let best = 100;
+            let best = Infinity;
 
             board.getAvailableColumns().forEach(index => {
-                let copy = new Board(board.board.slice())
+                let copy = board.copyBoard()
                 copy.insertDisc("yellow", index + 1)
                 let node_value = this.getBestMove(copy, true, callback, depth + 1)
                 best = Math.min(best, node_value)

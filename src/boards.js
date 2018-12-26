@@ -5,7 +5,7 @@
  */
 
 export default class Board {
-    constructor(height = 6, width = 7) {
+    constructor(board, height = 6, width = 7) {
         this.board = board
         this.width = width
         this.height = height
@@ -89,7 +89,6 @@ export default class Board {
                         direction: "DL",
                         colum: c
                     }
-
         return false;
     }
 
@@ -103,11 +102,22 @@ export default class Board {
 
         for (let row = this.height - 1; row > -1; row--) {
             if (this.board[row][column - 1] === " ") {
-                console.log(`inserting ${color} at ${row}, ${column - 1}`)
+                "console.log(`inserting ${color} at ${row}, ${column - 1}`)"
                 this.board[row][column - 1] = color
                 return;
             }
         }
+    }
+
+    copyBoard() {
+        let newBoard = new Board();
+        newBoard.createEmptyBoard()
+
+        for (let index = 0; index <= this.height - 1; index++) {
+            newBoard.board[index] = this.board[index].slice()
+        }
+
+        return newBoard;
     }
 
 }
