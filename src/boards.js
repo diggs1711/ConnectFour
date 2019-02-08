@@ -10,11 +10,36 @@ export default class Board {
         this.width = width
         this.height = height
         this.colors = ["red", "yellow"]
+        this.turn = 0;
     }
 
     createEmptyBoard() {
         this.board = Array(this.height).fill().map(() => Array(this.width).fill(" "))
         return this.board
+    }
+
+    createBoardView() {
+        let boardEle = document.getElementById("board")
+        boardEle.innerHTML = ""
+
+        for (let index = 0; index < this.height; index++) {
+            let rowEle = document.createElement("div")
+            rowEle.className = "row";
+
+            for (let col = 0; col < this.width; col++) {
+                let colEle = document.createElement("div")
+                colEle.className = `cell row-${index} col-${col}`
+                colEle.addEventListener("click", () => {
+                    this.cellClicked(col)
+                })
+                rowEle.appendChild(colEle)
+            }
+            boardEle.appendChild(rowEle)
+        }
+    }
+
+    cellClicked(col) {
+        this.insertDisc(col)
     }
 
     isEmpty() {
@@ -92,21 +117,31 @@ export default class Board {
         return false;
     }
 
-    insertDisc(color, column) {
-        if (column > this.width || !this.colors.find(c => c === color)) {
+    swtichTurns() {
+        this.turn = this.turn ? 0 : 1
+    }
+
+    insertDisc(column) {
+        if (column > this.width) {
             console.log("invalid params")
             return;
         }
-
-        if (this.isColumnFull(column - 1)) return
+        const color = this.colors[this.turn]
+        this.swtichTurns();
+        if (this.isColumnFull(column)) return
 
         for (let row = this.height - 1; row > -1; row--) {
-            if (this.board[row][column - 1] === " ") {
-                "console.log(`inserting ${color} at ${row}, ${column - 1}`)"
-                this.board[row][column - 1] = color
+            if (this.board[row][column] === " ") {
+                ///console.log(`inserting ${color} at ${row}, ${column}`)
+                let cell = document.getElementsByClassName(`cell row-${row} col-${column}`)[0];
+                cell.classList.add(color)
+                ///console.log(cell)
+                this.board[row][column] = color
+                console.log(this.isWinner());
                 return;
             }
         }
+
     }
 
     copyBoard() {

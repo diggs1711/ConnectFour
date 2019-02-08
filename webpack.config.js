@@ -20,13 +20,20 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: extractSass.extract({
-                    use: ['css-loader', 'sass-loader']
-                })
+                exclude: /node_modules/,
+                use: ["style-loader",
+                    'css-loader',
+                    'sass-loader'
+                ]
             }
         ]
     },
     plugins: [
-        extractSass
+        // new MiniCssExtractPlugin({
+        //     // Options similar to the same options in webpackOptions.output
+        //     // both options are optional
+        //     filename: "[name].css",
+        //     chunkFilename: "[id].css"
+        // })
     ]
 }
